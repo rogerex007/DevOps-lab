@@ -1,33 +1,27 @@
-pipeline{
-    agent any
-    
+node(){
     tools {nodejs "node"}
     
     stages{
-        stage('Select Branch'){
-            steps{
-                sh 'git checkout ${GIT_BRANCH}'
-            }
-        }
-
         stage('Test'){
             steps{
                 sh 'npm test'
             }
         }
         
-        stage('Install'){
+        stage('Build'){
             steps{
                 sh 'npm install'
             }
         }
 
-        stage('Build'){
+        stage('Deploy'){
             steps{
-                sh 'npm run build'
+                // Copy the built files to the deploy folder
+
+                sh 'mkdir -p deploy'
+                sh 'cp -r /* deploy'
             }
         }
-
         
     }
 }
