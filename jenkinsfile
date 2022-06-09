@@ -27,11 +27,7 @@ pipeline{
         stage('Start'){
             steps{
                 sh(returnStdout: true, script: '''#!/bin/bash
-                    if pm2 list | grep -q index; then
-                        pm2 restart index
-                    else
-                        pm2 start src/index.js 
-                    fi
+                    pm2 restart all
                 '''.stripIndent())
             }
         }
