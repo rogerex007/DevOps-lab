@@ -2,6 +2,12 @@ pipeline{
     agent any
     
     tools {nodejs "node"}
+
+    environment {
+        // Search Repo name from the URL
+        REPO_NAME = "DevOps-lab"
+        DEPLOY_FOLDER = '${HOME}/deployedApps'
+    }
     
     stages{
 
@@ -18,11 +24,33 @@ pipeline{
             }
         }
 
+        stage('Build Artifact'){
+            steps{
+                sh 'zip Artifact.zip ${WORKSPACE}/${REPO_NAME}'
+            }
+        }
+
+        stage('Copy Artifact'){
+            steps{
+                sh 'cp ${WORKSPACE}/Artifact.zip'
+            }
+        }
+
         stage('Deploy'){
             steps{
+                sh 'unzip ${WORKSPACE}/Artifact.zip -d ${DEPLOY_FOLDER}'
+                sh 'cd ${DEPLOY_FOLDER}/${REPO_NAME}'
                 sh 'npm run start'
             }
         }
+
+        stage('Cleanup'){
+            steps{
+                sh 'rm ${WORKSPACE}/Artifact.zip'
+            }
+        }
+
+
         
     }
 }
