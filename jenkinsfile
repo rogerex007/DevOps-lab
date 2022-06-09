@@ -4,24 +4,23 @@ pipeline{
     tools {nodejs "node"}
     
     stages{
-        stage('Test'){
-            steps{
-                sh 'npm test'
-            }
-        }
-        
-        stage('Build'){
+
+        stage('Install'){
             steps{
                 sh 'npm install'
             }
         }
 
+
+        stage('Test'){
+            steps{
+                sh 'npm test'
+            }
+        }
+
         stage('Deploy'){
             steps{
-                // Copy the built files to the deploy folder
-
-                sh 'mkdir -p deploy'
-                sh 'cp -r /* deploy'
+                sh 'npm run start'
             }
         }
         
