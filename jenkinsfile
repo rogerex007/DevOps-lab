@@ -26,6 +26,7 @@ pipeline{
 
         stage('Start'){
             steps{
+                sh 'sudo PM2_HOME=/etc/pm2daemon pm2 stop all'
                 sh 'npm start'
             }
         }

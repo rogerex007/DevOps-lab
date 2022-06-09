@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "export NODE_OPTIONS=--experimental-vm-modules && jest",
-    "start": "sudo PM2_HOME=/etc/pm2daemon pm2 start src/index.js --name devops-lab"
+    "start": "sudo PM2_HOME=/etc/pm2daemon pm2 start src/index.js --name devops-lab-2"
   },
   "repository": {
     "type": "git",
