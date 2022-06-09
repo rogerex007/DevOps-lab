@@ -27,14 +27,13 @@ pipeline{
         stage('Start'){
             steps{
                 sh(returnStdout: true, script: '''#!/bin/bash
-                    if ps aux | grep -q node; then
+                    if pgrep "node" ; then
                         echo "Node is already running"
-                        sudo kill -9 $(pgrep -f node)
-                        npm run start &
+                        kill -9 $(pgrep -f node)
                     else
-                       echo "Node is not running"
-                        npm run start &
+                        echo "Node is not running"
                     fi
+                    npm run start &
                 '''.stripIndent())
             }
         }
