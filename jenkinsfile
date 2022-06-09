@@ -24,24 +24,9 @@ pipeline{
             }
         }
 
-        stage('Build Artifact'){
+        stage('Start'){
             steps{
-                sh 'zip Artifact.zip ${WORKSPACE}/*'
-            }
-        }
-
-
-        stage('Deploy'){
-            steps{
-                sh 'unzip ${WORKSPACE}/Artifact.zip -d ${DEPLOY_FOLDER}'
-                sh 'cd ${DEPLOY_FOLDER}'
                 sh 'npm run start'
-            }
-        }
-
-        stage('Cleanup'){
-            steps{
-                sh 'rm ${WORKSPACE}/Artifact.zip'
             }
         }
 
