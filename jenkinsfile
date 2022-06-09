@@ -6,7 +6,7 @@ pipeline{
     environment {
         // Search Repo name from the URL
         REPO_NAME = "DevOps-lab"
-        DEPLOY_FOLDER = '$HOME/deployedApps'
+        DEPLOY_FOLDER = '/home/rmesa/deployedApps'
     }
     
     stages{
