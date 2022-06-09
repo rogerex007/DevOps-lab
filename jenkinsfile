@@ -26,11 +26,14 @@ pipeline{
 
         stage('Start'){
             steps{
-                if('sh ps aux | grep node' == '1'){
-                    sh 'kill -9 $(pgrep -f node)'
-                    sh 'npm run start &'
+                script{
+                    if(sh 'ps aux | grep node' == '1'){
+                        sh 'kill -9 $(pgrep -f node)'
+                        sh 'npm run start &'
+                    }else{
+                        sh 'npm run start &'
+                    }
                 }
-                sh 'npm run start &'
             }
         }
 
