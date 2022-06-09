@@ -29,7 +29,7 @@ pipeline{
                 sh(returnStdout: true, script: '''#!/bin/bash
                     if ps aux | grep -q node; then
                         echo "Node is already running"
-                        kill -9 $(pgrep -f node)
+                        sudo kill -9 $(pgrep -f node)
                         npm run start &
                     else
                        echo "Node is not running"
