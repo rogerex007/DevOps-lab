@@ -27,6 +27,7 @@ pipeline{
         stage('Start'){
             steps{
                 sh(returnStdout: true, script: '''#!/bin/bash
+                    pm2 start src/index.js --name Example
                     pm2 restart all
                 '''.stripIndent())
             }
