@@ -1,0 +1,33 @@
+pipeline{
+    agent any
+    
+    tools {nodejs "node"}
+    
+    stages{
+        stage('Select Branch'){
+            steps{
+                sh 'git checkout ${GIT_BRANCH}'
+            }
+        }
+
+        stage('Test'){
+            steps{
+                sh 'npm test'
+            }
+        }
+        
+        stage('Install'){
+            steps{
+                sh 'npm install'
+            }
+        }
+
+        stage('Build'){
+            steps{
+                sh 'npm run build'
+            }
+        }
+
+        
+    }
+}
