@@ -5,7 +5,7 @@ const app = express();
 app.use(express.json());
 
 app.get("/", (req, res) => {
-    res.json({ message: "Server ON NEW FEATURE" });
+    res.json({ message: "Server ON NEW FEATURE 2" });
 });
 
 app.get("/users", (req, res) => {
