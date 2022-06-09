@@ -29,9 +29,9 @@ pipeline{
                 sh(returnStdout: true, script: '''#!/bin/bash
                     if [-d ps aux | grep -q node]; then
                         kill -9 $(ps aux | grep node | awk '{print $1}')
-                        npm run start
+                        npm run start &
                     else
-                        npm start
+                        npm run start &
                     fi
                 '''.stripIndent())
             }
