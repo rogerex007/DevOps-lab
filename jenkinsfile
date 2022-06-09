@@ -26,20 +26,15 @@ pipeline{
 
         stage('Build Artifact'){
             steps{
-                sh 'zip Artifact.zip ${WORKSPACE}/${REPO_NAME}'
+                sh 'zip Artifact.zip ${WORKSPACE}/'
             }
         }
 
-        stage('Copy Artifact'){
-            steps{
-                sh 'cp ${WORKSPACE}/Artifact.zip'
-            }
-        }
 
         stage('Deploy'){
             steps{
                 sh 'unzip ${WORKSPACE}/Artifact.zip -d ${DEPLOY_FOLDER}'
-                sh 'cd ${DEPLOY_FOLDER}/${REPO_NAME}'
+                sh 'cd ${DEPLOY_FOLDER}'
                 sh 'npm run start'
             }
         }
